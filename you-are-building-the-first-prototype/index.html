@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ff4f87" />
+    <title>LoveGift — a little surprise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* V2 creator-only confirmation screen. Kept separate so a future backend can reuse it. */
+      .created-screen{background:radial-gradient(circle at 82% 12%,#ffdce7 0,transparent 30%),linear-gradient(140deg,#fff8f7,#f8f4ff);flex-direction:column}.created-layout{width:min(1000px,100%);margin:auto;display:grid;grid-template-columns:1fr .8fr;align-items:center;gap:100px;padding:36px 28px 70px}.created-copy h2{font-family:"Playfair Display",serif;font-size:clamp(3rem,6vw,4.6rem);letter-spacing:-2px;margin:0}.created-copy h2 span{color:#ff4f87}.share-label{display:block;margin:28px 0 8px}.share-row{display:flex;gap:8px}.share-row input{margin:0;min-width:0;background:#fff}.copy-button,.secondary-button{border-radius:12px;padding:11px 15px;font-weight:700;color:#765668;background:#fff;border:1px solid #ebdbe2;white-space:nowrap;transition:.2s}.copy-confirmation{min-height:20px;color:#ed2e6c;font-size:.82rem;font-weight:700;margin:8px 0 0}.created-actions{display:flex;gap:10px;margin:16px 0 18px}.created-actions .primary-button{padding:12px 17px}.created-preview{transform:rotate(4deg)}@media(max-width:720px){.created-layout{grid-template-columns:1fr;padding:22px 23px 55px;gap:33px}.created-screen .preview-wrap{order:-1}.share-row,.created-actions{flex-direction:column}.copy-button{width:100%}}
+      .qr-panel{margin:20px 0 6px;padding:18px;background:#fffdfd;border:1px solid #f3e2e8;border-radius:20px;text-align:center;box-shadow:0 10px 25px #9c536c12}.qr-code{display:grid;place-items:center;width:218px;height:218px;margin:0 auto;padding:10px;background:#fff;border-radius:12px}.qr-code img,.qr-code canvas{display:block;width:198px!important;height:198px!important;image-rendering:pixelated}.qr-caption{color:#795c6d;font-size:.82rem;margin:12px 0 0}.qr-status{min-height:18px;margin:5px 0 0;color:#b1667f;font-size:.76rem}.created-actions{flex-wrap:wrap}.created-actions button{flex:1 1 auto}@media(max-width:720px){.qr-code{width:min(218px,72vw);height:min(218px,72vw)}.qr-code img,.qr-code canvas{width:calc(min(218px,72vw) - 20px)!important;height:calc(min(218px,72vw) - 20px)!important}.created-actions button{width:100%}}
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- Landing screen -->
+      <section id="landing" class="screen landing-screen active">
+        <div class="glow glow-one"></div><div class="glow glow-two"></div>
+        <nav class="nav"><a class="brand" href="#landing">Love<span>Gift</span><b>♥</b></a><span class="nav-note">Made with love</span></nav>
+        <div class="landing-content">
+          <div class="hero-copy">
+            <p class="eyebrow">A tiny moment, made magical</p>
+            <h1>Turn a little <em>love</em> into a big smile.</h1>
+            <p class="lede">Create a little surprise they'll never forget ❤️</p>
+            <button class="primary-button" id="start-button">Create a Gift <span>♥</span></button>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+            <div class="love-card"><span class="card-sparkle">✦</span><p>For someone</p><strong>extra special</strong><span class="card-heart">♥</span></div>
+            <span class="float-heart heart-a">♥</span><span class="float-heart heart-b">♥</span><span class="float-heart heart-c">♥</span>
+          </div>
+        </div>
+        <p class="scroll-hint">Made to make hearts flutter <span>↓</span></p>
+      </section>
+
+      <!-- Creator form -->
+      <section id="creator" class="screen creator-screen">
+        <nav class="nav"><a class="brand" href="#landing">Love<span>Gift</span><b>♥</b></a><button class="text-button" id="back-home">← Home</button></nav>
+        <div class="creator-layout">
+          <div class="form-area">
+            <p class="eyebrow">Create your surprise</p>
+            <h2>Make it theirs.</h2>
+            <p class="form-intro">A few thoughtful details are all it takes.</p>
+            <form id="gift-form">
+              <label>Who's receiving this?<input id="recipient" type="text" maxlength="40" placeholder="e.g. Priya" required /></label>
+              <label>Who's it from?<input id="sender" type="text" maxlength="40" placeholder="e.g. Alex" required /></label>
+              <label>Your heartfelt message<textarea id="message" rows="3" maxlength="280" placeholder="Write something sweet…" required></textarea></label>
+              <label>Photo URL <span class="optional">optional</span><input id="photo" type="url" placeholder="https://example.com/our-photo.jpg" /></label>
+              <button class="primary-button form-submit" type="submit">Create My Gift <span>♥</span></button>
+              <p class="form-hint">Your gift is created in this browser — no account needed.</p>
+            </form>
+          </div>
+          <aside class="preview-wrap"><p class="preview-label">LIVE PREVIEW</p><div class="mini-gift"><p>Hey <span id="preview-recipient">someone special</span> <b>♥</b></p><h3>Do you love me?</h3><div><button>YES ♥</button><button>NO 😐</button></div><small>Made with LoveGift</small></div></aside>
+        </div>
+      </section>
+
+      <!-- This screen is for the creator after their shareable link is ready. -->
+      <section id="created" class="screen created-screen">
+        <nav class="nav"><a class="brand" href="#landing">Love<span>Gift</span><b>♥</b></a><button class="text-button" id="created-home">← Home</button></nav>
+        <div class="created-layout">
+          <div class="created-copy">
+            <p class="eyebrow">Your surprise is ready</p>
+            <h2>Gift Created! <span>♥</span></h2>
+            <p class="form-intro">Share this private link with your favourite person.</p>
+            <div class="qr-panel">
+              <div id="qr-code" class="qr-code" aria-label="QR code for this LoveGift"></div>
+              <p class="qr-caption">Scan this QR code to open the surprise</p>
+              <p class="qr-status" id="qr-status" aria-live="polite"></p>
+            </div>
+            <label class="share-label" for="share-link">Your shareable link</label>
+            <div class="share-row"><input id="share-link" type="text" readonly aria-label="Your shareable LoveGift link" /><button id="copy-link" class="copy-button">Copy Link</button></div>
+            <p class="copy-confirmation" id="copy-confirmation" aria-live="polite"></p>
+            <div class="created-actions"><button id="download-qr" class="secondary-button">Download QR Code</button><button id="share-gift" class="secondary-button" hidden>Share Gift</button><button id="open-gift" class="primary-button">Open Gift <span>♥</span></button><button id="another-gift" class="secondary-button">Create Another Gift</button></div>
+            <p class="form-hint">Anyone with this link can open this gift. For now, the details live in the link itself.</p>
+          </div>
+          <aside class="preview-wrap"><p class="preview-label">GIFT PREVIEW</p><div class="mini-gift created-preview"><p>Hey <span id="created-recipient">someone special</span> <b>♥</b></p><h3>Do you love me?</h3><div><button>YES ♥</button><button>NO 😐</button></div><small>Made with LoveGift</small></div></aside>
+        </div>
+      </section>
+
+      <!-- Recipient's interactive gift -->
+      <section id="gift" class="screen gift-screen">
+        <div class="gift-ambient ambient-one"></div><div class="gift-ambient ambient-two"></div>
+        <div class="gift-question" id="gift-question">
+          <p class="to-line">Hey <span id="gift-recipient">you</span> <b>♥</b></p>
+          <p class="question-kicker">A little question from someone who adores you</p>
+          <h2 id="question-text">Do you love me?</h2>
+          <p class="question-sub" id="question-sub">Choose carefully… no pressure. ✨</p>
+          <div class="answer-buttons"><button class="yes-button" id="yes-button">YES <span>♥</span></button><button class="no-button" id="no-button">NO <span>😐</span></button></div>
+          <p class="no-counter" id="no-counter"></p>
+        </div>
+        <div class="celebration" id="celebration" aria-live="polite">
+          <div class="celebration-copy"><p>It was always you</p><h2>YAY! <span>♥</span></h2><p class="open-note">A little something is waiting for you…</p></div>
+          <button id="gift-box" class="gift-box" aria-label="Open your gift"><span class="box-lid"><i></i></span><span class="box-body"><i></i></span><span class="box-bow">♥</span></button>
+          <p class="tap-note" id="tap-note">Tap the gift to open it</p>
+          <article class="reveal-card" id="reveal-card"><span class="tiny-heart">♥</span><p class="message-label">A message for you</p><p class="personal-message" id="personal-message"></p><img id="gift-photo" alt="A special memory" /><p class="love-from">Love, <strong id="gift-sender"></strong> <span>♥</span></p></article>
+        </div>
+        <button class="restart-button" id="restart-button">+ Create Another Gift</button>
+      </section>
+    </main>
+    <div id="confetti" class="confetti" aria-hidden="true"></div>
+    <!-- This free library creates the QR image locally in the browser. No gift data is sent to it. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

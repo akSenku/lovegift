@@ -190,7 +190,8 @@ $('#share-gift').addEventListener('click', async () => {
 });
 
 $('#open-gift').addEventListener('click', () => {
-  if (currentGift) loadGift(currentGift);
+  // Reloading the generated URL proves the recipient view uses the same share link as the QR code.
+  window.location.assign($('#share-link').value);
 });
 
 $('#another-gift').addEventListener('click', () => {
